@@ -2,24 +2,21 @@
 import "package:flutter/material.dart";
 import "package:flutter_lagu_daerah_app/models/province.dart";
 
-class DetailPage extends StatefulWidget {
+class DetailPage extends StatelessWidget {
   final Province province;
+
   const DetailPage({
     super.key,
     required this.province,
   });
 
-  @override
-  State<DetailPage> createState() => _DetailPageState();
-}
 
-class _DetailPageState extends State<DetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          widget.province.nama,
+          province.nama,
           style: const TextStyle(color: Colors.white),
         ),
         iconTheme: const IconThemeData(color: Colors.white),
@@ -31,7 +28,7 @@ class _DetailPageState extends State<DetailPage> {
         padding: const EdgeInsets.all(16),
         children: [
           Text(
-            widget.province.laguDaerah,
+            province.laguDaerah,
             textAlign: TextAlign.center,
             style: const TextStyle(
               fontSize: 18,
@@ -40,7 +37,7 @@ class _DetailPageState extends State<DetailPage> {
           ),
           const SizedBox(height: 4),
           Text(
-            '${widget.province.nama} - ${widget.province.ibuKota}',
+            '${province.nama} - ${province.ibuKota}',
             textAlign: TextAlign.center,
             style: const TextStyle(
               fontSize: 16,
@@ -48,7 +45,7 @@ class _DetailPageState extends State<DetailPage> {
           ),
           const SizedBox(height: 8),
           Image.network(
-            widget.province.photo,
+            province.photo,
             height: 300,
           ),
           const SizedBox(height: 16),
@@ -58,7 +55,7 @@ class _DetailPageState extends State<DetailPage> {
                   color: Colors.blueGrey[50],
                   borderRadius: const BorderRadius.all(Radius.circular(12))),
               child: Text(
-                widget.province.lirikLaguDaerah,
+                province.lirikLaguDaerah,
                 textAlign: TextAlign.center,
               )),
         ],

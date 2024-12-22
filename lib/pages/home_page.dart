@@ -2,14 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_lagu_daerah_app/models/province.dart';
 import'package:flutter_lagu_daerah_app/pages/detail_page.dart';
 
-class HomePage extends StatefulWidget {
+class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
-  @override
-  State<HomePage> createState() => _HomePageState();
-} 
-
-class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
