@@ -19,7 +19,7 @@ class HomePage extends StatelessWidget {
       ),
       body: ListView.builder(
         itemBuilder: (context, index) {
-          return InkWell(
+          return InkWell( 
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: ((context) {
                 return DetailPage(

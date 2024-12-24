@@ -2,7 +2,7 @@
 import "package:flutter/material.dart";
 import "package:flutter_lagu_daerah_app/models/province.dart";
 
-class DetailPage extends StatelessWidget {
+class DetailPage extends StatefulWidget {
   final Province province;
 
   const DetailPage({
@@ -10,13 +10,20 @@ class DetailPage extends StatelessWidget {
     required this.province,
   });
 
+  @override
+  State<DetailPage> createState() => _DetailPageState();
+}
+
+class _DetailPageState extends State<DetailPage> {
+  // Tambahkan state untuk tombol like
+  bool isLiked = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          province.nama,
+          widget.province.nama,
           style: const TextStyle(color: Colors.white),
         ),
         iconTheme: const IconThemeData(color: Colors.white),
@@ -28,7 +35,7 @@ class DetailPage extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         children: [
           Text(
-            province.laguDaerah,
+            widget.province.laguDaerah,
             textAlign: TextAlign.center,
             style: const TextStyle(
               fontSize: 18,
@@ -37,7 +44,7 @@ class DetailPage extends StatelessWidget {
           ),
           const SizedBox(height: 4),
           Text(
-            '${province.nama} - ${province.ibuKota}',
+            '${widget.province.nama} - ${widget.province.ibuKota}',
             textAlign: TextAlign.center,
             style: const TextStyle(
               fontSize: 16,
@@ -45,19 +52,48 @@ class DetailPage extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Image.network(
-            province.photo,
+            widget.province.photo,
             height: 300,
           ),
           const SizedBox(height: 16),
           Container(
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                  color: Colors.blueGrey[50],
-                  borderRadius: const BorderRadius.all(Radius.circular(12))),
-              child: Text(
-                province.lirikLaguDaerah,
-                textAlign: TextAlign.center,
-              )),
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: Colors.blueGrey[50],
+              borderRadius: const BorderRadius.all(Radius.circular(12)),
+            ),
+            child: Text(
+              widget.province.lirikLaguDaerah,
+              textAlign: TextAlign.center,
+            ),
+          ),
+          const SizedBox(height: 16),
+          // Tambahkan tombol like
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              IconButton(
+                onPressed: () {
+                  setState(() {
+                    isLiked = !isLiked; // Ubah state tombol like
+                  });
+                },
+                icon: Icon(
+                  isLiked ? Icons.favorite : Icons.favorite_border,
+                  color: isLiked ? Colors.red : Colors.grey,
+                  size: 32,
+                ),
+              ),
+              const SizedBox(width: 8),
+              Text(
+                isLiked ? 'Disukai' : 'Sukai',
+                style: TextStyle(
+                  color: isLiked ? Colors.red : Colors.grey,
+                  fontSize: 16,
+                ),
+              ),
+            ],
+          ),
         ],
       ),
     );
