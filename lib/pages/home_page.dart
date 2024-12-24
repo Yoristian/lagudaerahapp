@@ -25,7 +25,7 @@ class HomePage extends StatelessWidget {
                 return DetailPage(
                   province: laguDaerahList[index],
                 );
-              })));,
+              })));
             },
             child: Card(
               child: ListTile(
